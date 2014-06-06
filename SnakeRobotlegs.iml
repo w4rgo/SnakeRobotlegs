@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="SnakeRobotlegs">
+    <configurations>
+      <configuration name="SnakeRobotlegs" main-class="com.w4rgo.snake.Main" output-file="SnakeRobotlegs.swf" output-folder="$MODULE_DIR$/out/production/SnakeRobotlegs" use-html-wrapper="true" wrapper-template-path="$MODULE_DIR$/html-template">
+        <dependencies target-player="11.1">
+          <entries>
+            <entry library-id="8b013ffa-f3c6-4828-b889-4a05a6aacb20">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="84a74d0f-7d7c-4fe1-a7b9-c8b678db2d2e">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="flex_sdk_4.6" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="flex_sdk_4.6" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="8b013ffa-f3c6-4828-b889-4a05a6aacb20" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../sdks/robotlegs-framework-v2.2.1/bin/robotlegs-framework-v2.2.1.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="84a74d0f-7d7c-4fe1-a7b9-c8b678db2d2e" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../tools/as3commons-collections-1.3.2.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>
+
