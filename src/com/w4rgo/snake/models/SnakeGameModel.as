@@ -11,11 +11,20 @@ public class SnakeGameModel
 	private var _snakeOne : Snake;
 	private var _gameOver:Boolean;
 	private var _speed : int;
-
+	private var _fruitCount: int;
 
 	public function SnakeGameModel()
 	{
+		_gameOver=false;
+		_boundaries = new LinkedList();
+		_fruits = new LinkedList();
+		_snakeOne = new Snake( Configuration.START_X, Configuration.START_Y);
+		_speed = Configuration.START_SPEED;
+	}
 
+	public function resetSnakeModel():void
+	{
+		_gameOver=false;
 		_boundaries = new LinkedList();
 		_fruits = new LinkedList();
 		_snakeOne = new Snake( Configuration.START_X, Configuration.START_Y);
@@ -57,6 +66,16 @@ public class SnakeGameModel
 	public function get snakeOne() : Snake
 	{
 		return _snakeOne;
+	}
+
+	public function get fruitCount() : int
+	{
+		return _fruitCount;
+	}
+
+	public function set fruitCount(value : int) : void
+	{
+		_fruitCount = value;
 	}
 }
 }

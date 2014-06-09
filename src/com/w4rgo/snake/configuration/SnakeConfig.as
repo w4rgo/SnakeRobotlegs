@@ -14,7 +14,6 @@ import com.w4rgo.snake.models.Snake;
 import com.w4rgo.snake.models.SnakeGameModel;
 import com.w4rgo.snake.models.factories.GameObjectFactory;
 import com.w4rgo.snake.models.factories.IGameObjectFactory;
-import com.w4rgo.snake.utils.Renderer;
 import com.w4rgo.snake.views.IGameView;
 import com.w4rgo.snake.views.ILobbyView;
 import com.w4rgo.snake.views.IMainView;

@@ -10,12 +10,12 @@ public interface IGameView
 
 	function updateScoreboard(value : String) : void;
 
-	function paint(array : Vector.<IDrawableGameObject>):void ;
-
 	function paintObject(object : IDrawableGameObject) : void;
 
 	function paintLinkedList(array : LinkedList):void;
 
 	function clear():void;
+
+	function showRestartOrBackButtons():void;
 }
 }

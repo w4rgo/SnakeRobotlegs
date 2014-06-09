@@ -31,34 +31,41 @@ public class StartGameCommand
 	[Inject]
 	public var eventDispatcher : IEventDispatcher;
 
+	private var snakeTimer : Timer;
+
 	public function execute() : void
 	{
 		trace("START GAME COMMAND");
+		initGame();
 		generateBoundaries();
 		startTimer();
 		eventDispatcher.dispatchEvent(new ViewEvent(ViewEvent.SHOW, Views.GAME));
 		eventDispatcher.dispatchEvent(new GameEvent(GameEvent.GAME_STARTED));
 	}
 
+	private function initGame()
+	{
+		snakeGameModel.resetSnakeModel();
+	}
+
 	private function startTimer() : void
 	{
-		var snakeTimer:Timer = new Timer(snakeGameModel.speed, 0);
+		snakeTimer = new Timer(snakeGameModel.speed, 0);
 		snakeTimer.start();
 		snakeTimer.addEventListener(TimerEvent.TIMER, ticker);
 	}
 
-	private function ticker(event:TimerEvent):void {
-		if (!snakeGameModel.gameOver) {
+	private function ticker(event : TimerEvent) : void
+	{
+		if (!snakeGameModel.gameOver)
+		{
 
 			eventDispatcher.dispatchEvent(new SnakeEvent(SnakeEvent.SNAKE_ADVANCE));
-			//trace("TICK");
-			//snakeGameModel.snakeOne.advance();
-			//this.checkObjectCollisions();
-
-			/*renderer.clear();
-			renderer.paintLinkedList(fruits);
-			renderer.paintLinkedList(boundaries);
-			renderer.paintLinkedList(snakeOne.snakeBody);*/
+		}
+		else
+		{
+			snakeTimer.stop();
+			snakeTimer.removeEventListener(TimerEvent.TIMER, ticker);
 		}
 	}
 
@@ -73,16 +80,16 @@ public class StartGameCommand
 
 
 			var wall : IGameObject = gameObjectFactory.createGameObject(GameObjectType.WALL);
-			wall.move(i, 0 + Configuration.OFFSET_Y);
+			wall.move(i, 0);// + Configuration.OFFSET_Y);
 			snakeGameModel.boundaries.add(wall);
 
 			wall = gameObjectFactory.createGameObject(GameObjectType.WALL);
-			wall.move(i, height + Configuration.OFFSET_Y);
+			wall.move(i, height);// + Configuration.OFFSET_Y);
 			snakeGameModel.boundaries.add(wall);
 
 		}
 
-		for (i = 0 + Configuration.OFFSET_Y; i < height + Configuration.OFFSET_Y; i++)
+		for (i = 0 /*+ Configuration.OFFSET_Y*/; i < height /*+ Configuration.OFFSET_Y*/; i++)
 		{
 
 			wall = gameObjectFactory.createGameObject(GameObjectType.WALL);

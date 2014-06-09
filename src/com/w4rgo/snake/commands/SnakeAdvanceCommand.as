@@ -1,7 +1,6 @@
 package com.w4rgo.snake.commands
 {
 import com.w4rgo.snake.configuration.Configuration;
-import com.w4rgo.snake.configuration.Configuration;
 import com.w4rgo.snake.events.SnakeEvent;
 import com.w4rgo.snake.models.IGameObject;
 import com.w4rgo.snake.models.Snake;
@@ -85,8 +84,8 @@ public class SnakeAdvanceCommand
 	private function randomizeCoordX() : int
 	{
 
-		var max : int = Configuration.BOARD_SIZE_X + Configuration.OFFSET_X - (Configuration.SQUARE_SIZE);
-		var min : int = Configuration.OFFSET_X + (Configuration.SQUARE_SIZE);
+		var max : int = Configuration.BOARD_SIZE_X - (Configuration.SQUARE_SIZE);
+		var min : int = Configuration.SQUARE_SIZE;
 		var num : int = (Math.floor((Math.random() * (max - min) / Configuration.SQUARE_SIZE))) * Configuration.SQUARE_SIZE + min;
 		return num;
 
@@ -96,8 +95,8 @@ public class SnakeAdvanceCommand
 	private function randomizeCoordY() : int
 	{
 
-		var max : int = Configuration.BOARD_SIZE_Y + Configuration.OFFSET_Y - (Configuration.SQUARE_SIZE);
-		var min : int = Configuration.OFFSET_Y + (Configuration.SQUARE_SIZE);
+		var max : int = Configuration.BOARD_SIZE_Y - (Configuration.SQUARE_SIZE);
+		var min : int =  (Configuration.SQUARE_SIZE);
 		var num : int = (Math.floor((Math.random() * (max - min) / Configuration.SQUARE_SIZE))) * Configuration.SQUARE_SIZE + min;
 		return num;
 
@@ -109,7 +108,16 @@ public class SnakeAdvanceCommand
 
 		if (snakeGameModel.fruits.size == 0)
 		{
-			var gameObject : IGameObject = gameObjectFactory.createGameObject(GameObjectType.FRUIT);
+			var gameObject : IGameObject;
+			if(snakeGameModel.fruitCount != 5) {
+				gameObject= gameObjectFactory.createGameObject(GameObjectType.FRUIT);
+				snakeGameModel.fruitCount=snakeGameModel.fruitCount+1;
+			} else {
+				gameObject= gameObjectFactory.createGameObject(GameObjectType.GOLD);
+				snakeGameModel.fruitCount=0;
+
+			}
+
 			gameObject.move(randomizeCoordX(), randomizeCoordY());
 
 			snakeGameModel.fruits.add(gameObject);
@@ -162,7 +170,7 @@ public class SnakeAdvanceCommand
 		snakeGameModel.snakeOne.snakeScore = snakeGameModel.snakeOne.snakeScore + object.scoreValue();
 
 		//playerOneScore.text = snakeOne.snakeScore.toString();
-		snakeGameModel.snakeOne.snakeTotalSize += 1;
+		snakeGameModel.snakeOne.snakeTotalSize += object.scoreValue();
 		//generateFruits();
 		if (snakeGameModel.speed > 30) {
 			snakeGameModel.decrementSpeed(Configuration.SPEED_DECREMENT);

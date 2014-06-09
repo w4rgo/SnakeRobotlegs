@@ -31,6 +31,8 @@ public class GameMediator extends Mediator
 	    addViewListener(InputEvent.MOVE_DOWN,onMoveDown,InputEvent);
 	    addViewListener(InputEvent.MOVE_LEFT,onMoveLeft,InputEvent);
 	    addViewListener(InputEvent.MOVE_RIGHT,onMoveRight,InputEvent);
+
+	    addViewListener(GameEvent.START_GAME, dispatch);
     }
 
 	private function onMoveUp(event:InputEvent) : void
@@ -55,6 +57,7 @@ public class GameMediator extends Mediator
 
         view.clear();
         view.paintLinkedList(snakeGameModel.boundaries);
+	    view.initScoreboard();
         //contextView
     }
 
@@ -68,6 +71,7 @@ public class GameMediator extends Mediator
 		var gameover: String = "";
 		if (snakeGameModel.gameOver) {
 			gameover= "GAME OVER: ";
+			view.showRestartOrBackButtons();
 		}
 		view.updateScoreboard(gameover+snakeGameModel.snakeOne.snakeScore.toString());
 	}
